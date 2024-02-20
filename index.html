@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenAI API Demo</title>
+    <title>Print Input Text</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
         }
+
         #result {
             width: 80%;
             height: 100px;
@@ -22,41 +23,12 @@
 </head>
 
 <body>
-    <h1>OpenAI API Demo</h1>
-    <input type="text" id="inputText" placeholder="Enter your text here">
-    <button onclick="callOpenAI()">Get Response</button>
-    <div id="result"></div>
+<h1>Print Input Text</h1>
+<input type="text" id="inputText" placeholder="Enter your text here">
+<button id="printButton">Print Text</button>
+<div id="result"></div>
+<script src="callAPI.js"></script>
 
-    <script>
-        // Function to call OpenAI API
-        function callOpenAI() {
-            const inputText = document.getElementById('inputText').value;
-
-            // You need to replace 'YOUR_API_KEY' with your actual OpenAI API key
-            const apiKey = 'YOUR_API_KEY';
-            const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
-
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    prompt: inputText,
-                    max_tokens: 100
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                const resultDiv = document.getElementById('result');
-                resultDiv.textContent = data.choices[0].text;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
 </body>
 
 </html>
